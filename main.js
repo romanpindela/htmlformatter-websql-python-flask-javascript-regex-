@@ -16,7 +16,7 @@ function formatHTML() {
 	// 2nd push htmls tags to stack
 	let regexpTag = /<(\/?(\w+))([^>]*)>([^<]*)/g;
 	let htmlTags = sourceContent.matchAll(regexpTag);
-	let space = '    '
+	let space = '  ';
 	for (let match of htmlTags) {
 
 
@@ -27,9 +27,10 @@ function formatHTML() {
 
 			if (!match[1].startsWith('/')) {
 				stack.push(match[2])
+				targetArea.textContent += (space.repeat(stack.length-1) + match[0]);
 
 			} else {
-				targetArea.textContent += match[1]
+				targetArea.textContent += (space.repeat(stack.length-1) + match[0]);
 				stack.pop()
 
 			}
